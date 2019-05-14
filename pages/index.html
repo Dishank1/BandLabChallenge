@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>BandLab</title>
+    <script src="../js/post.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+  </head>
+  <body>
+    <nav class="navbar">
+        <span class="navbar-toggle" id="js-navbar-toggle">
+            <i class="fas fa-bars"></i>
+        </span>
+        <ul class="main-nav" id="js-menu">
+            <li>
+                <a href="index.html" class="nav-links">Table</a>
+            </li>
+            <li>
+                <a href="audioPage.html" class="nav-links">Audio Player</a>
+            </li>
+        </ul>
+    </nav>
+    <button type="button" onclick="getPosts()" name="btn_post">Click me to get posts</button>
+    <button type="button" onclick="sortDataAlphabetically()" name="btn_Sort">Sort Posts</button>
+    <button type="button" onclick="sortDataById()" name="btn_sortID">Sort by Id</button>
+
+    <div id="myTable"></div>
+  </body>
+</html>
