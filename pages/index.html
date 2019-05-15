@@ -20,10 +20,11 @@
             </li>
         </ul>
     </nav>
-    <button type="button" onclick="getPosts()" name="btn_post">Click me to get posts</button>
-    <button type="button" onclick="sortDataAlphabetically()" name="btn_Sort">Sort Posts</button>
-    <button type="button" onclick="sortDataById()" name="btn_sortID">Sort by Id</button>
-
+    <div class="postButtons">
+      <button type="button" onclick="getPosts()" name="btn_post">Click me to get posts</button>
+      <button type="button" onclick="sortDataAlphabetically()" name="btn_Sort">Sort Alphabetically</button>
+      <button type="button" onclick="sortDataById()" name="btn_sortID">Sort by Id</button>
+    </div>
     <div id="myTable"></div>
   </body>
 </html>

@@ -1,15 +1,18 @@
 
 let data;
 
+//fetches posts
 function getPosts() {
   return fetch('https://jsonplaceholder.typicode.com/posts')
    .then(response => response.json())
    .then(json => {
      data = json;
+     clearTable();
      generate_table();
    });
 }
 
+//Sorts the data Alphabetically
 function sortDataAlphabetically(){
   data.sort(function(a, b) {
     var textA = a.title.toUpperCase();
@@ -19,7 +22,8 @@ function sortDataAlphabetically(){
   clearTable();
   generate_table();
 }
-// ||  a.name.localeCompare(b.name);
+
+//Sort the data by ID
 function sortDataById(){
   data.sort(function(a, b) {
     var textA = a.title.toUpperCase();
@@ -31,29 +35,39 @@ function sortDataById(){
       return 0;
     }
     return textA > textB ? 1 : -1;
-  // return a.userId - b.userId || sortDataAlphabetically()
   });
-  clearTable()
-  generate_table()
-  // for (var i = 0; i < data.length; i++) {
-  //   console.log('testing: '+JSON.stringify(data[i]));
-  // }
+  clearTable();
+  generate_table();
 }
 
+
+//Clear the table before sorting
 function clearTable()
 {
-    document.getElementById('myTable').innerHTML = "";
+  document.getElementById('myTable').innerHTML = "";
 }
 
 
 function generate_table() {
-//  getPosts().then(function(res){
-  //console.log('data: '+data);
+  var myHeaders = ['userId','Title','Body'];
   // get the reference for the body
   var myTable = document.getElementById("myTable");
 
   // creates a <table> element and a <tbody> element
   var tbl = document.createElement("table");
+
+  var tblHead = document.createElement("thead");
+  var row = document.createElement("tr");
+  for (var i = 0; i < myHeaders.length; i++) {
+    var header = document.createElement("th");
+    var cellText = document.createTextNode(myHeaders[i]);
+    header.appendChild(cellText);
+    row.appendChild(header);
+  }
+
+  tblHead.appendChild(row);
+
+  tbl.classList.add('paleBlueRows');
   var tblBody = document.createElement("tbody");
 
   // creating all cells
@@ -62,9 +76,6 @@ function generate_table() {
     var row = document.createElement("tr");
 
     for (var j = 0; j < 3; j++) {
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
       var cell = document.createElement("td");
       if(j==0){
         var cellText = document.createTextNode(data[i].userId);
@@ -72,7 +83,6 @@ function generate_table() {
         var cellText = document.createTextNode(data[i].title);
       }else{
         var cellText = document.createTextNode(data[i].body);
-
     }
 
       cell.appendChild(cellText);
@@ -84,12 +94,10 @@ function generate_table() {
   }
 
   // put the <tbody> in the <table>
+  tbl.appendChild(tblHead);
   tbl.appendChild(tblBody);
   // appends <table> into <body>
   myTable.appendChild(tbl);
   // sets the border attribute of tbl to 2;
   tbl.setAttribute("border", "2");
-  //});
 }
-
-// console.log('Hello World');
